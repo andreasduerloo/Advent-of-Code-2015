@@ -31,8 +31,8 @@ fn main() {
                         println!("Hash found for number {} 🔓", number);
                     }
                     number += 1;
-                }
-            }          
+                }  
+            }
         }
         _ => {
             println!("Too many arguments.");
