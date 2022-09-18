@@ -18,7 +18,7 @@ pub mod paper {
         output
     }
     
-    fn smallest_side(areas: &[usize; 3]) -> usize {
+    pub fn smallest_side(areas: &[usize; 3]) -> usize {
         let mut minimum = areas[0];
     
         for area in areas {
@@ -48,5 +48,26 @@ pub mod paper {
         else {
             None
         }
+    }
+}
+
+pub mod ribbon {
+    use crate::paper::*;
+
+    fn shortest_ribbon(dimensions: &[usize; 3]) -> usize {
+        let ribbon_lengths: [usize; 3] = [
+            (dimensions[0] + dimensions[1]) * 2,
+            (dimensions[0] + dimensions[2]) * 2,
+            (dimensions[1] + dimensions[2]) * 2
+        ];
+        smallest_side(&ribbon_lengths)
+    }
+
+    fn cube_gift(dimensions: &[usize; 3]) -> usize {
+        dimensions[0] * dimensions[1] * dimensions[2]
+    }
+
+    pub fn get_ribbon(dimensions: &[usize; 3]) -> usize {
+        shortest_ribbon(dimensions) + cube_gift(dimensions)
     }
 }
