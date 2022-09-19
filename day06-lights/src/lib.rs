@@ -1,31 +1,36 @@
 pub mod lights {
     use crate::input::*;
 
-    fn turn_off(grid: &mut Vec<Vec<bool>>, points: &[[usize; 2]; 2]) {
+    fn turn_off(grid: &mut Vec<Vec<(bool, usize)>>, points: &[[usize; 2]; 2]) {
         for i in points[0][0]..(points[1][0] + 1) {
             for j in points [0][1]..(points[1][1] + 1) {
-                grid[i][j] = false;
+                grid[i][j].0 = false;
+                if grid[i][j].1 > 0 {
+                    grid[i][j].1 -= 1;
+                }
             }
         }
     }
 
-    fn turn_on(grid: &mut Vec<Vec<bool>>, points: &[[usize; 2]; 2]) {
+    fn turn_on(grid: &mut Vec<Vec<(bool, usize)>>, points: &[[usize; 2]; 2]) {
         for i in points[0][0]..(points[1][0] + 1) {
             for j in points [0][1]..(points[1][1] + 1) {
-                grid[i][j] = true;
+                grid[i][j].0 = true;
+                grid[i][j].1 += 1;
             }
         }
     }
 
-    fn toggle(grid: &mut Vec<Vec<bool>>, points: &[[usize; 2]; 2]) {
+    fn toggle(grid: &mut Vec<Vec<(bool, usize)>>, points: &[[usize; 2]; 2]) {
         for i in points[0][0]..(points[1][0] + 1) {
             for j in points [0][1]..(points[1][1] + 1) {
-                grid[i][j] = !grid[i][j];
+                grid[i][j].0 = !grid[i][j].0;
+                grid[i][j].1 += 2;
             }
         }
     }
 
-    pub fn execute_instruction(grid: &mut Vec<Vec<bool>>, instruction: (Command, [[usize; 2]; 2])) {
+    pub fn execute_instruction(grid: &mut Vec<Vec<(bool, usize)>>, instruction: (Command, [[usize; 2]; 2])) {
         match instruction.0 {
             Command::Off => {
                 turn_off(grid, &instruction.1);
