@@ -1,14 +1,42 @@
 pub mod lights {
-    pub fn turn_off(grid: &mut[[bool; 1000]; 1000], points: &[[usize; 2]; 2]) {
-        //
+    use crate::input::*;
+
+    fn turn_off(grid: &mut Vec<Vec<bool>>, points: &[[usize; 2]; 2]) {
+        for i in points[0][0]..(points[1][0] + 1) {
+            for j in points [0][1]..(points[1][1] + 1) {
+                grid[i][j] = false;
+            }
+        }
     }
 
-    pub fn turn_on(grid: &mut[[bool; 1000]; 1000], points: &[[usize; 2]; 2]) {
-        //
+    fn turn_on(grid: &mut Vec<Vec<bool>>, points: &[[usize; 2]; 2]) {
+        for i in points[0][0]..(points[1][0] + 1) {
+            for j in points [0][1]..(points[1][1] + 1) {
+                grid[i][j] = true;
+            }
+        }
     }
 
-    pub fn toggle(grid: &mut[[bool; 1000]; 1000], points: &[[usize; 2]; 2]) {
-        //
+    fn toggle(grid: &mut Vec<Vec<bool>>, points: &[[usize; 2]; 2]) {
+        for i in points[0][0]..(points[1][0] + 1) {
+            for j in points [0][1]..(points[1][1] + 1) {
+                grid[i][j] = !grid[i][j];
+            }
+        }
+    }
+
+    pub fn execute_instruction(grid: &mut Vec<Vec<bool>>, instruction: (Command, [[usize; 2]; 2])) {
+        match instruction.0 {
+            Command::Off => {
+                turn_off(grid, &instruction.1);
+            },
+            Command::On => {
+                turn_on(grid, &instruction.1);
+            },
+            Command::Toggle => {
+                toggle(grid, &instruction.1);
+            }
+        }
     }
 }
 
