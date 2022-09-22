@@ -1,10 +1,4 @@
 pub mod characters {
-
-    // Count the string literals in the code
-    // Subtract the characters in memory
-    // - Ignore leading and trailing double quotes
-    // - Count escaped quotes and escapes backslashes as one character each
-    // - An escaped \x followed by two hexadecimal characters counts as one character
     
     pub fn count_chars(input: &str, code_chars: &mut usize, mem_chars: &mut usize, expanded_chars: &mut usize) {
         let split_input: Vec<&str> = input.split("").collect();

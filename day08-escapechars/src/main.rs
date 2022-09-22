@@ -13,5 +13,5 @@ fn main() {
         characters::count_chars(content, &mut code_chars, &mut mem_chars, &mut expanded_chars);
     }
 
-    println!("First star: {}, second star {}", code_chars - mem_chars, expanded_chars - code_chars);
+    println!("First star: {}, second star: {}", code_chars - mem_chars, expanded_chars - code_chars);
 }
