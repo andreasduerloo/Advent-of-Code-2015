@@ -52,3 +52,12 @@ pub fn add_info<'a>(mut locations: Vec<Location<'a>>, start: &'a str, destinatio
 
     locations
 }
+
+pub fn next_city(current_city: &Location, visited_cities: &mut Vec<&str>, all_cities: &Vec<Location>) -> Option<&str> {
+    if visited_cities.len() == all_cities.len() {
+        None
+    }
+    else {
+        
+    }
+}

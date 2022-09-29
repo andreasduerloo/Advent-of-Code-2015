@@ -18,8 +18,21 @@ fn main() {
     //     println!("Name: {} - known distances: {}", location.name, location.distances.len());
     // }
 
-    println!("These are the distances from Tristram:");
-    for distance in locations[0].distances.keys() {
-        println!("City: {}, distance: {}", distance, locations[0].distances.get(distance).unwrap());
+    // println!("These are the distances from Tristram:");
+    // for distance in locations[0].distances.keys() {
+    //     println!("City: {}, distance: {}", distance, locations[0].distances.get(distance).unwrap());
+    // }
+
+    let mut shortest_route: usize = usize::MAX;
+    // Start with each of the eight cities, always follow the shortest path
+
+    for i in locations.length() {
+        let mut route_length: usize 0;
+        let mut visited_cities: Vec<&str> = Vec::new();
+        let current_city = locations[i];
+
+        while Some(city) = next_city(&current_city, &mut visited_cities, &locations) {
+            route_length += locations
+        }
     }
 }
