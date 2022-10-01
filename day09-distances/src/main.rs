@@ -1,5 +1,6 @@
 use std::fs;
 use day09_distances::*;
+use std::collections::HashMap;
 
 fn main() {
     let input = fs::read_to_string("input.txt").expect("Could not read file");
@@ -23,16 +24,33 @@ fn main() {
     //     println!("City: {}, distance: {}", distance, locations[0].distances.get(distance).unwrap());
     // }
 
-    let mut shortest_route: usize = usize::MAX;
-    // Start with each of the eight cities, always follow the shortest path
+    // Turn the vector of locations into a HashMap
+    let mut location_map: HashMap<&str, Location> = HashMap::new();
 
-    for i in locations.length() {
-        let mut route_length: usize 0;
-        let mut visited_cities: Vec<&str> = Vec::new();
-        let current_city = locations[i];
+    for location in locations {
+        location_map.insert(location.name, location);
+    }
 
-        while Some(city) = next_city(&current_city, &mut visited_cities, &locations) {
-            route_length += locations
+    // let mut shortest_route: usize = usize::MAX;
+    // Start with each of the eight cities, always go to the nearest, unvisited city
+
+    for starting_city in location_map.keys() {
+        // println!("Testing {}", starting_city);
+        let local_map = location_map.clone();
+        let current_city: Location = local_map.get(starting_city).unwrap().clone();
+        let mut route_length: usize = 0;
+
+        let mut context: Option<(Location, HashMap<&str, Location>, usize)> = next_city(current_city, local_map, route_length);
+
+        while let Some(output) = context {
+            let city = output.0;
+            let map = output.1.clone();
+            let distance = output.2;
+
+            route_length = output.2;
+            context = next_city(city, map, distance);
         }
+
+        println!("Route length for the route starting in {} is {}.", starting_city, route_length);
     }
 }
