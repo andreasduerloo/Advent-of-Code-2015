@@ -36,18 +36,6 @@ fn single_round(input: Vec<char>) -> Vec<char> {
         out_vec.push(character);
     }
     
-    // for i in 0..input.len() {
-    //     let character = input[i];
-    //     let number = run_length(&character, &input, &i);
-    //     let number_as_str = number.to_string();
-    //     let num_vec: Vec<char> = number_as_str.chars().collect();
-
-    //     for letter in num_vec {
-    //         out_vec.push(letter);
-    //     }
-    //     out_vec.push(character);
-    // }
-
     out_vec
 }
 
