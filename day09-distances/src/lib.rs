@@ -93,3 +93,43 @@ pub fn next_city<'a>(current_city: Location<'a>, remaining_cities: HashMap<&'a s
         }
     }
 }
+
+pub fn next_city_long<'a>(current_city: Location<'a>, remaining_cities: HashMap<&'a str, Location<'a>>, route_length: usize) -> Option<(Location<'a>, HashMap<&'a str, Location<'a>>, usize)> {
+    let mut out_cities = remaining_cities.clone();
+    let mut out_length = route_length;
+    
+    if out_cities.len() == 0 {
+        None
+    }
+    else {
+        let mut longest_distance: usize = 0;
+        let mut next_city: &str = "";
+
+        for city in current_city.distances.keys() {
+            if let Some(_) = out_cities.get(city) { // Check if we've been here already
+                if let Some(distance) = current_city.distances.get(city) {
+                    // println!("Checking distance to {} - inner loop", city);
+                    if *distance > longest_distance {
+                        longest_distance = *distance;
+                        next_city = city;
+                    }
+                }       
+            }
+        }
+        if out_cities.len() != 1 {
+            // println!("Adding {} and {}", out_length, closest_distance);
+            out_length += longest_distance;
+        }
+        // Remove the visited city
+        let _ = out_cities.remove(current_city.name);
+
+        // println!("Next up: {}", next_city);
+
+        if out_cities.len() == 0 {
+            None
+        }
+        else {
+            Some((out_cities.get(next_city).unwrap().clone(), out_cities, out_length))
+        }
+    }
+}
