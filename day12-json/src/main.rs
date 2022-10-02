@@ -15,4 +15,12 @@ fn main() {
     let char_vec: Vec<char> = input.chars().collect();
 
     println!("First star - result = {}", run(char_vec, &valid_chars));
+
+    // Go again for the second star
+    let input = fs::read_to_string("input.txt").expect("Could not read file");
+    let char_vec: Vec<char> = input.chars().collect();
+
+    // Are there nested objects?
+    
+    // println!("Second star - result = {}", run_without_red(char_vec, &valid_chars));
 }
