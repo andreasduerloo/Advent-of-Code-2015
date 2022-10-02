@@ -1,4 +1,5 @@
 use std::fs;
+use day12_json::*;
 
 fn main() {
     /* We pass these values to a function that checks whether a given character is part of an integer.
@@ -13,4 +14,5 @@ fn main() {
     let input = fs::read_to_string("input.txt").expect("Could not read file");
     let char_vec: Vec<char> = input.chars().collect();
 
+    println!("First star - result = {}", run(char_vec, &valid_chars));
 }
