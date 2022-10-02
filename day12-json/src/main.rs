@@ -1,3 +1,16 @@
+use std::fs;
+
 fn main() {
-    println!("Hello, world!");
+    /* We pass these values to a function that checks whether a given character is part of an integer.
+    Because we will be calling the function a lot of times, I don't want to declare this array inside the function.
+    */
+    let valid_chars: [char; 11] = [
+        '-', '0', '1', '2',
+        '3', '4', '5', '6',
+        '7', '8', '9'
+    ];
+
+    let input = fs::read_to_string("input.txt").expect("Could not read file");
+    let char_vec: Vec<char> = input.chars().collect();
+
 }
