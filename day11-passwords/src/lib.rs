@@ -113,7 +113,7 @@ pub fn check(password: &[char; 8], indices: &HashMap<char, usize>) -> bool {
         if *indices.get(&password[i]).unwrap() < 24 {
             let start_index: usize = *indices.get(&password[i]).unwrap();
             let middle_index: usize = *indices.get(&password[i + 1]).unwrap();
-            let end_index: usize = *indices.get(&password[i + 2]).unwrap(); // It goes wrong here when trying to get 'z'
+            let end_index: usize = *indices.get(&password[i + 2]).unwrap();
     
             if start_index + 1 == middle_index && middle_index + 1 == end_index {
                 straight = true;

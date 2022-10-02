@@ -17,7 +17,7 @@ fn main() {
 
     let mut index: HashMap<char, usize> = HashMap::new(); // For letter -> number conversion
 
-    for i in 0..25 {
+    for i in 0..26 {
         index.insert(letters[i], i);
     }
 
