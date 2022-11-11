@@ -19,6 +19,6 @@ fn main() {
     }
 
     for deer in deer_vec {
-        println!("Deer {} has a speed of {}", deer.name, deer.speed);
+        println!("Deer {} ran {} km. 🦌", deer.name, run(&deer, 2503));
     }
 }
