@@ -28,8 +28,8 @@ fn main() {
     // Make a HashMap of deer and their score
     let mut deer_map: HashMap<>;
 
-    // Add one point to the dear in the lead after every second
+    // Add one point to the deer in the lead after every second
     for i in 0..2503 {
-
+        //
     }
 }
