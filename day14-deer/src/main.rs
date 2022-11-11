@@ -1,4 +1,5 @@
 use std::fs;
+use std::collections:HashMap;
 use day14_deer::*;
 
 fn main() {
@@ -19,6 +20,16 @@ fn main() {
     }
 
     for deer in deer_vec {
-        println!("Deer {} ran {} km. 🦌", deer.name, run(&deer, 2503));
+        println!("⭐ Deer {} ran {} km. 🦌", deer.name, run(&deer, 2503));
+        // Get a vector of distances and return the highest
+    }
+    // Note: iterator has consumed the vector.
+    
+    // Make a HashMap of deer and their score
+    let mut deer_map: HashMap<>;
+
+    // Add one point to the dear in the lead after every second
+    for i in 0..2503 {
+
     }
 }
