@@ -1,5 +1,5 @@
 use std::fs;
-use std::collections:HashMap;
+// use std::collections:HashMap;
 use day14_deer::*;
 
 fn main() {
@@ -19,17 +19,32 @@ fn main() {
         deer_vec.push(new_deer);
     }
 
-    for deer in deer_vec {
-        println!("⭐ Deer {} ran {} km. 🦌", deer.name, run(&deer, 2503));
-        // Get a vector of distances and return the highest
+    // First star
+    let mut dist_vec: Vec<usize> = Vec::new();
+    for i in 0..deer_vec.len() {
+        println!("⭐ Deer {} ran {} km. 🦌", deer_vec[i].name, run(&deer_vec[i], 2503));
+        dist_vec.push(run(&deer_vec[i], 2503));
     }
-    // Note: iterator has consumed the vector.
-    
-    // Make a HashMap of deer and their score
-    let mut deer_map: HashMap<>;
 
-    // Add one point to the deer in the lead after every second
-    for i in 0..2503 {
-        //
+    println!("--- ⭐ First star ⭐ ---");
+    println!("The longest distance is {} km.", longest(&dist_vec));
+    
+    // Second star
+    for i in 1..2504 {
+        let mut dist_vec: Vec<usize> = Vec::new();
+        for j in 0..deer_vec.len() {
+            let ran: usize = run(&deer_vec[j], i);
+            deer_vec[j].current_distance = ran;
+            dist_vec.push(ran);
+        }
+
+        for k in 0..deer_vec.len() {
+            if deer_vec[k].current_distance == longest(&dist_vec) {
+                deer_vec[k].score += 1;
+            }
+        }
     }
+
+    println!("--- ⭐ Second star ⭐ ---");
+    println!("The highest score is {}.", highest_score(&deer_vec));
 }
