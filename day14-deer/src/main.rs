@@ -1,5 +1,4 @@
 use std::fs;
-// use std::collections:HashMap;
 use day14_deer::*;
 
 fn main() {
